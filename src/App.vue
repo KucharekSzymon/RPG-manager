@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import TheWelcome from "./components/TheWelcome.vue";
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="./assets/logo.svg"
+      width="125"
+      height="125"
+    />
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
@@ -17,8 +23,29 @@ import TheWelcome from './components/TheWelcome.vue'
   </main>
 </template>
 
+<script lang="ts">
+import axios from "axios";
+export default {
+  name: "App",
+  data() {
+    return {
+      items: [],
+    };
+  },
+  async created() {
+    try {
+      const res = await axios.get(`http://localhost:3100/items`);
+      this.items = res.data;
+      console.log(this.items);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
+</script>
+
 <style>
-@import './assets/base.css';
+@import "./assets/base.css";
 
 #app {
   max-width: 1280px;
