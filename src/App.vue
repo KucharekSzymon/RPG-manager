@@ -1,11 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TheNavbar from "./components/TheNavbar.vue";
+</script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.svg" />
-  <br />
+  <TheNavbar />
 
-  <router-link to="/">Home</router-link>
-  <router-link to="/about">About</router-link>
   <router-view></router-view>
 </template>
 
@@ -60,35 +59,6 @@ a,
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 }
 </style>
