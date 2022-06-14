@@ -1,37 +1,4 @@
-<script lang="js">
-import axios from "axios";
-import router from "../../router";
-export default {
- data() {
-   return {
-     name: "",
-     type: "",
-     body: "",
-     details: "",
-     imageLink: ""
-   };
- },
- created() {
-   this.date_posted = new Date().toLocaleDateString();
- },
- methods: {
-   createPost() {
-     let postData = {
-       name: this.name,
-       type: this.type,
-       details: this.details,
-       imageLink: this.imageLink,
-     };
-     this.__submitToServer(postData);
-   },
-   __submitToServer(data) {
-     axios.post(`${server.baseURL}/places`, data).then(data => {
-       router.push({ name: "Home" });
-     });
-   }
- }
-};
-</script>
+
 
 <template>
   <div>
@@ -62,4 +29,40 @@ export default {
        </div>
    </div>
 </template>
+
+<script lang="js">
+import axios from "axios";
+import router from "../../router";
+export default {
+ data() {
+   return {
+     title: "",
+     description: "",
+     body: "",
+     author: "",
+     date_posted: ""
+   };
+ },
+ created() {
+   this.date_posted = new Date().toLocaleDateString();
+ },
+ methods: {
+   createPost() {
+     let postData = {
+       title: this.title,
+       description: this.description,
+       body: this.body,
+       author: this.author,
+       date_posted: this.date_posted
+     };
+     this.__submitToServer(postData);
+   },
+   __submitToServer(data) {
+     axios.post('http://localhost:3100/places', data).then(data => {
+       router.push({ name: "home" });
+     });
+   }
+ }
+};
+</script>
 
