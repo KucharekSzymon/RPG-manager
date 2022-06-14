@@ -36,24 +36,27 @@ import router from "../../router";
 export default {
  data() {
    return {
-     title: "",
-     description: "",
-     body: "",
-     author: "",
-     date_posted: ""
+     name: "",
+     type: "",
+     details: "",
+     imageLink: "",
    };
  },
- created() {
-   this.date_posted = new Date().toLocaleDateString();
- },
+ data: () => {
+    return {
+      name: "",
+      type: "",
+      details: "",
+      imageLink: "",
+    };
+  },
  methods: {
    createPost() {
      let postData = {
-       title: this.title,
-       description: this.description,
-       body: this.body,
-       author: this.author,
-       date_posted: this.date_posted
+       name: this.name,
+       type: this.type,
+       details: this.details,
+       imageLink: this.imageLink,
      };
      this.__submitToServer(postData);
    },
