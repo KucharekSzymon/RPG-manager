@@ -41,6 +41,11 @@
         </li>
         <li class="nav-item">
           <a class="nav-link">
+            <router-link to="/events">Events</router-link>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
             <router-link v-if="!isLoggedIn" to="/login">Login</router-link>
             <span v-if="isLoggedIn">Witaj {{ userName }}</span>
           </a>

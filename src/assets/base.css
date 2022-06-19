@@ -72,3 +72,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.card-img-top{
+  width: 50%;
+}
+.card{
+  align-items: center;
+}

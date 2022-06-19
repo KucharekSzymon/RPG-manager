@@ -1,17 +1,17 @@
 <template>
   <div>
     <div class="text-center">
-      <h1>All characters in game</h1>
-      <p>Browse for all characters</p>
+      <h1>All events in game</h1>
+      <p>Browse for all events</p>
 
       <div v-if="characters.length === 0">
-        <h2>No items found at the moment</h2>
+        <h2>No events found at the moment</h2>
       </div>
     </div>
     <router-link
       :to="{ name: 'characterCreate' }"
       class="btn btn-sm btn-outline-primary"
-      >Add character
+      >Add events
     </router-link>
     <div class="row">
       <div
@@ -20,25 +20,25 @@
         :key="character._id"
       >
         <div class="card mb-4 shadow-sm">
-          <img :src="character.imageLink" class="card-img-top" />
+          <img :src="character.iconLink" class="card-img-top" />
           <div class="card-body">
             <h5 class="card-title">{{ character.name }}</h5>
             <p class="card-text">{{ character.type }}</p>
             <router-link
-              :to="{ name: 'character', params: { id: character._id } }"
+              :to="{ name: 'event', params: { id: character._id } }"
               class="btn btn-sm btn-outline-secondary"
-              >View character
+              >View events
             </router-link>
             <router-link
-              :to="{ name: 'characterEdit', params: { id: character._id } }"
+              :to="{ name: 'eventEdit', params: { id: character._id } }"
               class="btn btn-sm btn-outline-warning"
-              >Edit character
+              >Edit events
             </router-link>
             <button
               class="btn btn-sm btn-outline-danger"
               v-on:click="deletePost(character._id)"
             >
-              Delete race
+              Delete events
             </button>
           </div>
         </div>
