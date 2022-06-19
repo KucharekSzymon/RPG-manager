@@ -58,7 +58,10 @@ export default {
      axios.post('http://localhost:3100/places', data).then(data => {
        this.$router.push("/posts");
      });
-   }
+   },
+   navigate() {
+      router.go(-1);
+    },
  }
 };
 </script>
