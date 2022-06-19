@@ -89,7 +89,10 @@ export default {
          alert(err.response.data.message);
        });
      });
-   }
+   },
+   navigate() {
+      router.go(-1);
+    },
  }
 };
 </script>
