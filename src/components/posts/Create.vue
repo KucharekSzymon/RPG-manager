@@ -42,14 +42,6 @@ export default {
      imageLink: "",
    };
  },
- data: () => {
-    return {
-      name: "",
-      type: "",
-      details: "",
-      imageLink: "",
-    };
-  },
  methods: {
    createPost() {
      let postData = {
