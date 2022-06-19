@@ -8,7 +8,7 @@
             <h2> No places found at the moment </h2>
         </div>
       </div>
-
+        <router-link :to="{name: 'placeCreate'}" class="btn btn-sm btn-outline-primary">Add Post </router-link> 
         <div class="row">
            <div class="col-md-4" v-for="post in posts" :key="post._id">
               <div class="card mb-4 shadow-sm">
