@@ -20,6 +20,11 @@ import characterHome from "@/components/characters/Posts.vue";
 import character from "@/components/characters/Post.vue";
 import characterCreate from "@/components/characters/Create.vue";
 import characterEdit from "@/components/characters/Edit.vue";
+//events
+import eventHome from "@/components/events/Posts.vue";
+import event from "@/components/events/Post.vue";
+import eventCreate from "@/components/events/Create.vue";
+import eventEdit from "@/components/events/Edit.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home },
@@ -59,6 +64,21 @@ const routes = [
     path: "/character/edit/:id",
     name: "characterEdit",
     component: characterEdit,
+  },
+
+  //events
+  { path: "/events", name: "eventHome", component: eventHome },
+  { path: "/event/:id", name: "event", component: event },
+
+  {
+    path: "/event/create",
+    name: "eventCreate",
+    component: eventCreate,
+  },
+  {
+    path: "/event/edit/:id",
+    name: "eventEdit",
+    component: eventEdit,
   },
 ];
 
