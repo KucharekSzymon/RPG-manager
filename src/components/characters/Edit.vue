@@ -153,7 +153,7 @@ export default {
       axios
         .patch(`http://localhost:3100/characters/${this.id}`, characterData)
         .then(() => {
-          router.push({ name: "Home" });
+          router.push("/characters");
         })
         .catch((err) => {
           alert(err.response.data.message);

@@ -118,7 +118,7 @@ export default {
       axios
         .patch(`http://localhost:3100/races/${this.id}`, itemData)
         .then(() => {
-          router.push({ name: "Home" });
+          router.push("/items");
         })
         .catch((err) => {
           alert(err.response.data.message);
