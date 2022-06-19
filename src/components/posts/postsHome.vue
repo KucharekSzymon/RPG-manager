@@ -14,7 +14,7 @@
            <div class="col-md-4" v-for="post in posts" :key="post._id">
               <div class="card mb-4 shadow-sm">
 
-                <img src="{{post.imageLink}}" class="card-img-top">
+                <img :src="post.imageLink" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title">{{post.name}}</h5>
                   <p class="card-text">{{post.details}}</p>
