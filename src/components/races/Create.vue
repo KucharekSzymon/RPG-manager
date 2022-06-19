@@ -4,12 +4,11 @@
       <h4 style="margin-top: 30px">
         <small
           ><button class="btn btn-success" v-on:click="navigate()">
-            View All Posts
+            View all races
           </button></small
         >
       </h4>
-
-      <h2>Create Place</h2>
+      <h2>Create races</h2>
       <form id="create-post-form" @submit.prevent="createPost">
         <div class="form-group col-md-12">
           <label for="name"> name </label>
@@ -23,38 +22,28 @@
           />
         </div>
         <div class="form-group col-md-12">
-          <label for="type"> type </label>
+          <label for="description"> description </label>
           <input
             type="text"
-            id="type"
-            v-model="type"
-            name="type"
+            id="description"
+            v-model="description"
+            name="description"
             class="form-control"
           />
         </div>
         <div class="form-group col-md-12">
-          <label for="details"> details </label>
-          <input
-            type="text"
-            id="details"
-            v-model="details"
-            name="details"
-            class="form-control"
-          />
-        </div>
-        <div class="form-group col-md-12">
-          <label for="imageLink"> imageLink </label>
+          <label for="imageLink"> Icon link </label>
           <input
             type="text"
             id="imageLink"
-            v-model="imageLink"
+            v-model="iconLink"
             name="imageLink"
             class="form-control"
           />
         </div>
 
         <div class="form-group col-md-4 pull-right">
-          <button class="btn btn-success" type="submit">Create Post</button>
+          <button class="btn btn-success" type="submit">Create race</button>
         </div>
       </form>
     </div>
@@ -68,24 +57,25 @@ export default {
  data() {
    return {
      name: "",
-     type: "",
-     details: "",
-     imageLink: "",
+     description: "",
+     iconLink: "",
    };
  },
  methods: {
    createPost() {
-     let postData = {
+     let raceData = {
        name: this.name,
-       type: this.type,
-       details: this.details,
-       imageLink: this.imageLink,
+       description: this.description,
+       iconLink: this.iconLink,
      };
-     this.__submitToServer(postData);
+     this.__submitToServer(raceData);
+   },
+   navigate(){
+     router.push("/races");
    },
    __submitToServer(data) {
-     axios.post('http://localhost:3100/places', data).then(data => {
-       this.$router.push("/posts").catch(err => {
+     axios.post('http://localhost:3100/races', data).then(data => {
+       router.push("/races").catch(err => {
          alert(err.response.data.message);
        });
      });
