@@ -17,7 +17,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{post.name}}</h5>
                   <p class="card-text">{{post.details}}</p>
-                  <!--<router-link :to="{name: 'Post', params: {id: post._id}}" class="btn btn-sm btn-outline-secondary">View Post </router-link>-->
+                  <router-link :to="{name: 'place', params: {id: post._id}}" class="btn btn-sm btn-outline-secondary">View Post </router-link>
                   <router-link :to="{name: 'placeEdit', params: {id: post._id}}" class="btn btn-sm btn-outline-warning">Edit Post </router-link> 
                   <button class="btn btn-sm btn-outline-danger" v-on:click="deletePost(post._id)">Delete Post</button>
                 </div>

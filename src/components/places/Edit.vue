@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h4 style="margin-top: 30px;"><small><button class="btn btn-success" v-on:click="navigate()"> View All Posts </button></small></h4>
+
     <div class="col-md-12 form-wrapper">
       <h2>Update place</h2>
       <form id="create-post-form" @submit.prevent="editPlace">
@@ -65,7 +67,6 @@ export default {
   },
   async created() {
     this.id = this.$route.params.id;
-    console.log(this.id);
     const place = await axios.get(`http://localhost:3100/places/${this.id}`);
     this.place = place.data;
   },

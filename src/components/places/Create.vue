@@ -3,6 +3,8 @@
 <template>
   <div>
        <div class="col-md-12 form-wrapper">
+        <h4 style="margin-top: 30px;"><small><button class="btn btn-success" v-on:click="navigate()"> View All Posts </button></small></h4>
+
          <h2> Create Place </h2>
          <form id="create-post-form" @submit.prevent="createPost">
               <div class="form-group col-md-12">
