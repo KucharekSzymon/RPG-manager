@@ -11,7 +11,7 @@
     <router-link
       :to="{ name: 'eventCreate' }"
       class="btn btn-sm btn-outline-primary"
-      >Add events
+      >Add event
     </router-link>
     <div class="row">
       <div
@@ -20,10 +20,10 @@
         :key="character._id"
       >
         <div class="card mb-4 shadow-sm">
-          <img :src="character.iconLink" class="card-img-top" />
+          <!-- <img :src="character.iconLink" class="card-img-top" /> -->
           <div class="card-body">
             <h5 class="card-title">{{ character.name }}</h5>
-            <p class="card-text">{{ character.type }}</p>
+            <p class="card-text">{{ character.description }}</p>
             <router-link
               :to="{ name: 'event', params: { id: character._id } }"
               class="btn btn-sm btn-outline-secondary"
