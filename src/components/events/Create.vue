@@ -4,11 +4,11 @@
       <h4 style="margin-top: 30px">
         <small
           ><button class="btn btn-success" v-on:click="navigate()">
-            View all Events
+            View all characters
           </button></small
         >
       </h4>
-      <h2>Create Event</h2>
+      <h2>Create character</h2>
       <form id="create-post-form" @submit.prevent="createPost">
         <div class="form-group col-md-12">
           <label for="name"> name </label>
@@ -32,51 +32,18 @@
           />
         </div>
         <div class="form-group col-md-12">
-          <label for="character"> characters </label>
-          <select v-model="charChar" name="character" id="characters">
-            <option v-for="r in characters" :key="r._id" v-bind:value="r._id">
-              {{ r.name }}
-            </option>
-          </select>
+          <label for="description"> description </label>
+          <input class="form-control" type="text" v-model="description" id="description" />
         </div>
         <div class="form-group col-md-12">
-          <label for="location"> location </label>
-          <select v-model="charLoc" name="location" id="location">
-            <option
-              v-for="loc in location"
-              :key="loc._id"
-              v-bind:value="loc._id"
-            >
-              {{ loc.name }}
-            </option>
-          </select>
-        </div>
-        <div class="form-group col-md-12">
-          <label for="items"> items </label>
-          <select v-model="charItems" name="location" id="items" multiple>
-            <option v-for="i in items" :key="i._id" v-bind:value="i._id">
+          <label for="locations"> locations </label>
+          <select v-model="charLoc" class="form-control" name="location" id="locations" multiple>
+            <option v-for="i in locations" :key="i._id" v-bind:value="i._id">
               {{ i.name }}
             </option>
           </select>
         </div>
-        <div class="form-group col-md-12">
-          <label for="age"> age </label>
-          <input
-            type="number"
-            min="0"
-            id="age"
-            v-model="age"
-            name="age"
-            class="form-control"
-          />
-        </div>
-        <div class="form-group col-md-12">
-          <label for="sex"> sex </label>
-          <select v-model="sex" id="sex">
-            <option>M</option>
-            <option>F</option>
-          </select>
-        </div>
+
         <div class="form-group col-md-12">
           <label for="imageLink"> Image link </label>
           <input
@@ -87,14 +54,8 @@
             class="form-control"
           />
         </div>
-        <div class="form-group col-md-12">
-          <label for="alive"> alive </label>
-          <input type="checkbox" v-model="alive" id="alive" />
-        </div>
-        <div class="form-group col-md-12">
-          <label for="description"> description </label>
-          <input type="text" v-model="description" id="description" />
-        </div>
+
+
         <div class="form-group col-md-4 pull-right">
           <button class="btn btn-success" type="submit">
             Create character
@@ -112,32 +73,28 @@ export default {
  data() {
    return {
      name: "",
+     age: '',
      type: '',
-     description: '',
-     characters: [],
-     location: [],
-     charChar: [],
-     charLoc: '',
-     iconLink: "",
+     locations: [],
+     charLoc: [],
+     imageLink: "",
    };
  },
   async created() {
-   const locations =  await axios.get('http://localhost:3100/places');
-   this.location = locations.data;
-   const characters = await axios.get('http://localhost:3100/characters');
-   this.characters = characters.data;
+
+   const locations = await axios.get('http://localhost:3100/places');
+   this.locations = locations.data;
   },
   methods: {
    createPost() {
-     let eventData = {
+     let characterData = {
        name: this.name,
        type: this.type,
-       character: this.charChar,
-       location: this.charLoc,
+       locations: this.charLoc,
        description: this.description,
-       iconLink: this.iconLink
+       iconLink: this.imageLink
      };
-     this.__submitToServer(eventData);
+     this.__submitToServer(characterData);
    },
    navigate(){
      router.push("/events");

@@ -9,7 +9,7 @@
       </div>
     </div>
     <router-link
-      :to="{ name: 'characterCreate' }"
+      :to="{ name: 'eventCreate' }"
       class="btn btn-sm btn-outline-primary"
       >Add events
     </router-link>

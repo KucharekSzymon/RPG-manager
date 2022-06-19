@@ -35,7 +35,7 @@ export default {
   methods: {
     getPost() {
       axios
-        .get(`http://localhost:3100/characters/${this.id}`)
+        .get(`http://localhost:3100/events/${this.id}`)
         .then((data) => (this.character = data.data));
     },
     navigate() {
