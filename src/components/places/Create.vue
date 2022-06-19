@@ -54,7 +54,7 @@ export default {
    },
    __submitToServer(data) {
      axios.post('http://localhost:3100/places', data).then(data => {
-       router.push({ name: "home" });
+       this.$router.push("/posts");
      });
    }
  }

@@ -1,6 +1,5 @@
 <template>
     <div>
-
       <div class="text-center">
         <h1>All places in game</h1>
         <p>Browse for all places</p>
@@ -18,9 +17,9 @@
                 <div class="card-body">
                   <h5 class="card-title">{{post.name}}</h5>
                   <p class="card-text">{{post.details}}</p>
-                  <!-- <router-link :to="{name: 'Post', params: {id: post._id}}" class="btn btn-sm btn-outline-secondary">View Post </router-link>
-                       <router-link :to="{name: 'Edit', params: {id: post._id}}" class="btn btn-sm btn-outline-secondary">Edit Post </router-link> -->
-                  <button class="btn btn-sm btn-outline-secondary" v-on:click="deletePost(post._id)">Delete Post</button>
+                  <!--<router-link :to="{name: 'Post', params: {id: post._id}}" class="btn btn-sm btn-outline-secondary">View Post </router-link>-->
+                  <router-link :to="{name: 'placeEdit', params: {id: post._id}}" class="btn btn-sm btn-outline-warning">Edit Post </router-link> 
+                  <button class="btn btn-sm btn-outline-danger" v-on:click="deletePost(post._id)">Delete Post</button>
                 </div>
               </div>
             </div>
