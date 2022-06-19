@@ -2,33 +2,25 @@
     <div>
 
       <div class="text-center">
-        <h1>Nest Blog Tutorial</h1>
-       <p> This is the description of the blog built with Nest.js, Vue.js and MongoDB</p>
+        <h1>All places in game</h1>
+        <p>Browse for all places</p>
 
        <div v-if="posts.length === 0">
-            <h2> No post found at the moment </h2>
+            <h2> No places found at the moment </h2>
         </div>
       </div>
 
         <div class="row">
            <div class="col-md-4" v-for="post in posts" :key="post._id">
               <div class="card mb-4 shadow-sm">
+
+                <img src="{{post.imageLink}}" class="card-img-top">
                 <div class="card-body">
-                   <h2 class="card-img-top">{{ post.name }}</h2>
-                  <p class="card-text">{{ post.type }}</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group" style="margin-bottom: 20px;">
-                      <!-- <router-link :to="{name: 'Post', params: {id: post._id}}" class="btn btn-sm btn-outline-secondary">View Post </router-link>
+                  <h5 class="card-title">{{post.name}}</h5>
+                  <p class="card-text">{{post.details}}</p>
+                  <!-- <router-link :to="{name: 'Post', params: {id: post._id}}" class="btn btn-sm btn-outline-secondary">View Post </router-link>
                        <router-link :to="{name: 'Edit', params: {id: post._id}}" class="btn btn-sm btn-outline-secondary">Edit Post </router-link> -->
-                       <button class="btn btn-sm btn-outline-secondary" v-on:click="deletePost(post._id)">Delete Post</button>
-                    </div>
-                  </div>
-
-                  <!-- <div class="card-footer">
-                    <small class="text-muted">Posted on: {{ post.date_posted}}</small><br/>
-                    <small class="text-muted">by: {{ post.author}}</small>
-                  </div> -->
-
+                  <button class="btn btn-sm btn-outline-secondary" v-on:click="deletePost(post._id)">Delete Post</button>
                 </div>
               </div>
             </div>
