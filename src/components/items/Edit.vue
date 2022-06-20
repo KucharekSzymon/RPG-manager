@@ -2,79 +2,43 @@
   <div>
     <div class="col-md-12 form-wrapper">
       <h4 style="margin-top: 30px">
-        <small
-          ><button class="btn btn-success" v-on:click="navigate()">
+        <small><button class="btn btn-success" v-on:click="navigate()">
             View all items
-          </button></small
-        >
+          </button></small>
       </h4>
-      <h2>Edit item</h2>
+      <h2>Create item</h2>
       <form id="create-post-form" @submit.prevent="editPlace">
         <div class="form-group col-md-12">
           <label for="name"> name </label>
-          <input
-            type="text"
-            id="name"
-            v-model="item.name"
-            name="name"
-            class="form-control"
-            placeholder="Enter name"
-          />
-        </div>
-        <div class="form-group col-md-12">
-          <label for="type"> type </label>
-          <input
-            type="text"
-            id="type"
-            v-model="item.type"
-            name="type"
-            class="form-control"
-          />
+          <input type="text" id="name" v-model="item.name" name="name" class="form-control" placeholder="Enter name" />
         </div>
         <div class="form-group col-md-12">
           <label for="quantity"> quantity </label>
-          <input
-            type="number"
-            min="0"
-            id="quantity"
-            v-model="item.quantity"
-            name="quantity"
-            class="form-control"
-          />
+          <input type="text" id="quantity" v-model="item.quantity" name="quantity" class="form-control" />
         </div>
+
+        <div class="form-group col-md-12">
+          <label for="type"> type </label>
+          <input type="text" id="type" v-model="item.type" name="type" class="form-control" />
+        </div>
+
         <div class="form-group col-md-12">
           <label for="weight"> weight </label>
-          <input
-            type="number"
-            min="0"
-            id="weight"
-            v-model="item.weight"
-            name="weight"
-            class="form-control"
-          />
+          <input type="text" id="weight" v-model="item.weight" name="weight" class="form-control" />
         </div>
+
         <div class="form-group col-md-12">
-          <label for="iconLink"> Image link </label>
-          <input
-            type="text"
-            id="iconLink"
-            v-model="item.iconLink"
-            name="iconLink"
-            class="form-control"
-          />
-        </div>
-        <div class="form-group col-md-12">
-          <label for="location"> location </label>
-          <select
-            v-model="item.location"
-            name="location"
-            id="location"
-            multiple
-          >
-            <option v-for="loc in item.location" :key="loc._id">
-              {{ loc.name }}
+          <label for="locations"> locations </label>
+          <select class="form-control" v-model="cahrLoc" name="location" id="locations" multiple>
+            <option v-for="i in locations" :key="i._id" v-bind:value="i._id">
+              {{ i.name }}
             </option>
           </select>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="imageLink"> Image link </label>
+          <input type="text" id="imageLink" v-model="item.imageLink" name="imageLink" class="form-control" />
         </div>
 
         <div class="form-group col-md-4 pull-right">
@@ -93,12 +57,21 @@ export default {
     return {
       id: 0,
       item: {},
+      locations: [],
+      charLoc: [],
+
     };
   },
   async created() {
     this.id = this.$route.params.id;
-    const item = await axios.get(`http://localhost:3100/items/${this.id}`);
+    const item = await axios.get(
+      `http://localhost:3100/items/${this.id}`
+    );
     this.item = item.data;
+
+    const locations = await axios.get("http://localhost:3100/places");
+    this.locations = locations.data;
+
   },
   methods: {
     editPlace() {
@@ -108,11 +81,12 @@ export default {
       }
       let itemData = {
         name: this.item.name,
+        owner: this.item.owner,
         quantity: this.item.quantity,
         weight: this.item.weight,
-        location: places,
         type: this.item.type,
-        iconLink: this.item.iconLink,
+        locations: this.charLoc,
+        imageLink: this.item.imageLink,
       };
 
       axios
@@ -131,4 +105,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

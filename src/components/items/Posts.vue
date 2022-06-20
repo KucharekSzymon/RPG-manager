@@ -14,7 +14,11 @@
       >Add item
     </router-link>
     <div class="row">
-      <div class="col-md-4" v-for="item in items" :key="item._id">
+      <div
+        class="col-md-4"
+        v-for="item in items"
+        :key="item._id"
+      >
         <div class="card mb-4 shadow-sm">
           <img :src="item.imageLink" class="card-img-top" />
           <div class="card-body">
@@ -28,13 +32,13 @@
             <router-link
               :to="{ name: 'itemEdit', params: { id: item._id } }"
               class="btn btn-sm btn-outline-warning"
-              >Edit race
+              >Edit item
             </router-link>
             <button
               class="btn btn-sm btn-outline-danger"
               v-on:click="deletePost(item._id)"
             >
-              Delete race
+              Delete item
             </button>
           </div>
         </div>

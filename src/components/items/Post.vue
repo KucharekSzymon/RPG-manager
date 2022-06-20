@@ -2,21 +2,20 @@
   <div class="text-center">
     <div class="col-sm-12">
       <h4 style="margin-top: 30px">
-        <small
-          ><button class="btn btn-success" v-on:click="navigate()">
+        <small><button class="btn btn-success" v-on:click="navigate()">
             View all items
-          </button></small
-        >
+          </button></small>
       </h4>
       <hr />
       <img :src="item.imageLink" class="card-img-top" />
       <h1>{{ item.name }}</h1>
-      <h2>{{ item.quantity }}</h2>
-      <h2>{{ item.type }}</h2>
-      <h2>{{ item.weight }}</h2>
-      <h2>Locations:</h2>
-      <ul>
-        <li v-for="loc in item.location" :key="loc._id">{{ loc.name }}</li>
+      <h2>Qty: {{ item.quantity }}</h2>
+      <h2>Weight: {{ item.weight }}</h2>
+
+      <br>
+      <h2>Locations</h2>
+      <ul class="list-group">
+        <li class="list-group-item" v-for="i in item.location" :key="i._id" v-bind:value="i._id"> {{ i.name }}</li>
       </ul>
     </div>
   </div>
