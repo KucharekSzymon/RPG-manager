@@ -38,7 +38,7 @@
               class="btn btn-sm btn-outline-danger"
               v-on:click="deletePost(campaign._id)"
             >
-              Delete race
+              Delete campaign
             </button>
           </div>
         </div>
