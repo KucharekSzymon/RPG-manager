@@ -14,14 +14,11 @@ export default {
   name: "App",
   data() {
     return {
-      items: [],
     };
   },
   async created() {
     try {
       const res = await axios.get(`http://localhost:3100/items`);
-      this.items = res.data;
-      console.log(this.items);
     } catch (error) {
       console.log(error);
     }
