@@ -7,7 +7,7 @@
           </button></small>
       </h4>
       <h2>Create event</h2>
-      <form id="create-post-form" @submit.prevent="createPost">
+      <form id="create-post-form" @submit.prevent="editPlace">
         <div class="form-group col-md-12">
           <label for="name"> name </label>
           <input type="text" id="name" v-model="event.name" name="name" class="form-control" placeholder="Enter name" />
@@ -75,7 +75,7 @@ export default {
 
       axios
         .patch(`http://localhost:3100/events/${this.id}`, eventData)
-        .then(() => {
+        .then((data) => {
           router.push("/events");
         })
         .catch((err) => {
