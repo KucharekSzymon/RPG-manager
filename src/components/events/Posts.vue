@@ -4,8 +4,8 @@
       <h1>All events in game</h1>
       <p>Browse for all events</p>
 
-      <div v-if="characters.length === 0">
-        <h2>No events found at the moment</h2>
+      <div v-if="events.length === 0">
+        <h2>No items found at the moment</h2>
       </div>
     </div>
     <router-link
@@ -16,29 +16,29 @@
     <div class="row">
       <div
         class="col-md-4"
-        v-for="character in characters"
-        :key="character._id"
+        v-for="event in events"
+        :key="event._id"
       >
         <div class="card mb-4 shadow-sm">
-          <!-- <img :src="character.iconLink" class="card-img-top" /> -->
+          <img :src="event.imageLink" class="card-img-top" />
           <div class="card-body">
-            <h5 class="card-title">{{ character.name }}</h5>
-            <p class="card-text">{{ character.description }}</p>
+            <h5 class="card-title">{{ event.name }}</h5>
+            <p class="card-text">{{ event.type }}</p>
             <router-link
-              :to="{ name: 'event', params: { id: character._id } }"
+              :to="{ name: 'event', params: { id: event._id } }"
               class="btn btn-sm btn-outline-secondary"
-              >View events
+              >View event
             </router-link>
             <router-link
-              :to="{ name: 'eventEdit', params: { id: character._id } }"
+              :to="{ name: 'eventEdit', params: { id: event._id } }"
               class="btn btn-sm btn-outline-warning"
-              >Edit events
+              >Edit event
             </router-link>
             <button
               class="btn btn-sm btn-outline-danger"
-              v-on:click="deletePost(character._id)"
+              v-on:click="deletePost(event._id)"
             >
-              Delete events
+              Delete event
             </button>
           </div>
         </div>
@@ -54,7 +54,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      characters: []
+      events: []
     };
   },
   created() {
@@ -64,7 +64,7 @@ export default {
     fetchPosts() {
       axios
         .get(`http://localhost:3100/events`)
-        .then(data => (this.characters = data.data));
+        .then(data => (this.events = data.data));
     },
     deletePost(id) {
       axios.delete(`http://localhost:3100/events/${id}`).then(data => {

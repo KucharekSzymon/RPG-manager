@@ -8,12 +8,19 @@
       </h4>
       <hr />
       <h1>{{ event.name }}</h1>
-      <h2>{{ event.type }}</h2>
+      <h2>{{ event.description }}</h2>
+      <br><h2>Locations</h2>
       <ul class="list-group">
-  <li class="list-group-item" v-for="i in event.locations" :key="i._id" v-bind:value="i._id"> {{ i.name }}</li>
-</ul>
-
-
+        <li class="list-group-item" v-for="i in event.locations" :key="i._id" v-bind:value="i._id"> {{ i.name }}</li>
+      </ul>
+      <br><h2>Events</h2>
+      <ul class="list-group">
+        <li class="list-group-item" v-for="i in event.events" :key="i._id" v-bind:value="i._id"> {{ i.name }}</li>
+      </ul>
+      <br><h2>Characters</h2>
+      <ul class="list-group">
+        <li class="list-group-item" v-for="i in event.characters" :key="i._id" v-bind:value="i._id"> {{ i.name }}</li>
+      </ul>
     </div>
   </div>
 </template>

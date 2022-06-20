@@ -14,25 +14,31 @@
         </div>
         <div class="form-group col-md-12">
           <label for="type"> type </label>
-          <select id="type" v-model="event.type" name="type" class="form-control">
-            <option value="positive">positive</option>
-            <option value="negative">negative</option>
-            <option value="neutral">neutral</option>
-          </select>
+          <input type="text" id="type" v-model="event.type" name="type" class="form-control" />
         </div>
 
         <div class="form-group col-md-12">
-          <label for="locations"> locations </label>
-          <select v-model="charLoc" name="location" id="locations" multiple>
-            <option v-for="i in locations" :key="i._id" v-bind:value="i._id">
+          <label for="description"> description </label>
+          <input type="text" id="description" v-model="event.description" name="description" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="characters"> characters </label>
+          <select class="form-control" v-model="charEvents" name="location" id="characters" multiple>
+            <option v-for="i in characters" :key="i._id" v-bind:value="i._id">
               {{ i.name }}
             </option>
           </select>
         </div>
         <div class="form-group col-md-12">
-          <label for="description"> description </label>
-          <input type="text" v-model="event.description" id="description" />
+          <label for="locations"> locations </label>
+          <select class="form-control" v-model="cahrLoc" name="location" id="locations" multiple>
+            <option v-for="i in locations" :key="i._id" v-bind:value="i._id">
+              {{ i.name }}
+            </option>
+          </select>
         </div>
+
         <div class="form-group col-md-4 pull-right">
           <button class="btn btn-success" type="submit">Edit event</button>
         </div>
@@ -51,6 +57,8 @@ export default {
       event: {},
       locations: [],
       charLoc: [],
+      charChars: [],
+      characters: [],
     };
   },
   async created() {
@@ -63,19 +71,27 @@ export default {
     const locations = await axios.get("http://localhost:3100/places");
     this.locations = locations.data;
 
+    const characters = await axios.get("http://localhost:3100/characters");
+    this.characters = characters.data;
+
   },
   methods: {
     editPlace() {
+      const places = [];
+      for (let l in location) {
+        places.push(l._id);
+      }
       let eventData = {
         name: this.event.name,
         type: this.event.type,
-        locations: this.charLoc,
         description: this.event.description,
+        locations: this.charLoc,
+        characters: this.charChars,
       };
 
       axios
         .patch(`http://localhost:3100/events/${this.id}`, eventData)
-        .then((data) => {
+        .then(() => {
           router.push("/events");
         })
         .catch((err) => {
