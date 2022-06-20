@@ -9,7 +9,7 @@
         >
       </h4>
       <h2>Edit item</h2>
-      <form id="create-post-form" @submit.prevent="createPost">
+      <form id="create-post-form" @submit.prevent="editPlace">
         <div class="form-group col-md-12">
           <label for="name"> name </label>
           <input
@@ -54,12 +54,12 @@
           />
         </div>
         <div class="form-group col-md-12">
-          <label for="imageLink"> Image link </label>
+          <label for="iconLink"> Image link </label>
           <input
             type="text"
-            id="imageLink"
-            v-model="item.imageLink"
-            name="imageLink"
+            id="iconLink"
+            v-model="item.iconLink"
+            name="iconLink"
             class="form-control"
           />
         </div>
@@ -112,11 +112,11 @@ export default {
         weight: this.item.weight,
         location: places,
         type: this.item.type,
-        imageLink: this.item.imageLink,
+        iconLink: this.item.iconLink,
       };
 
       axios
-        .patch(`http://localhost:3100/races/${this.id}`, itemData)
+        .patch(`http://localhost:3100/items/${this.id}`, itemData)
         .then(() => {
           router.push("/items");
         })
