@@ -9,7 +9,7 @@
         >
       </h4>
       <h2>Create character</h2>
-      <form id="create-post-form" @submit.prevent="createPost">
+      <form id="create-post-form" @submit.prevent="editPlace">
         <div class="form-group col-md-12">
           <label for="name"> name </label>
           <input
@@ -117,6 +117,7 @@ export default {
       charItems: [],
       charLoc: "",
       charRace: "",
+      imageLink: "",
     };
   },
   async created() {
@@ -148,6 +149,7 @@ export default {
         alive: this.character.alive,
         sex: this.character.sex,
         age: this.character.age,
+        imageLink: this.imageLink,
       };
 
       axios

@@ -143,7 +143,7 @@ export default {
        alive: String(this.alive),
        sex: this.sex,
        age: String(this.age),
-       iconLink: this.imageLink
+       imageLink: this.imageLink
      };
      this.__submitToServer(characterData);
    },
