@@ -25,6 +25,11 @@ import eventHome from "@/components/events/Posts.vue";
 import event from "@/components/events/Post.vue";
 import eventCreate from "@/components/events/Create.vue";
 import eventEdit from "@/components/events/Edit.vue";
+//campaigns
+import campaignHome from "@/components/campaigns/Posts.vue";
+import campaign from "@/components/campaigns/Post.vue";
+import campaignCreate from "@/components/campaigns/Create.vue";
+import campaignEdit from "@/components/campaigns/Edit.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home },
@@ -79,6 +84,20 @@ const routes = [
     path: "/events/edit/:id",
     name: "eventEdit",
     component: eventEdit,
+  },
+  //campaigns
+  { path: "/campaigns", name: "campaignHome", component: campaignHome },
+  { path: "/campaign/:id", name: "campaign", component: campaign },
+
+  {
+    path: "/campaign/create",
+    name: "campaignCreate",
+    component: campaignCreate,
+  },
+  {
+    path: "/campaign/edit/:id",
+    name: "campaignEdit",
+    component: campaignEdit,
   },
 ];
 
