@@ -14,10 +14,6 @@
           <input type="text" id="name" v-model="name" name="name" class="form-control" placeholder="Enter name" />
         </div>
 
-        <div class="form-group col-md-12">
-          <label for="owner"> owner </label>
-          <input type="text" id="owner" v-model="owner" name="owner" class="form-control" placeholder="Enter owner" />
-        </div>
 
         <div class="form-group col-md-12">
           <label for="items"> items </label>
@@ -73,16 +69,25 @@
 <script lang="js">
 import axios from "axios";
 import router from "../../router";
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters(["userName"]),
+  },
+
   data() {
     return {
       name: "",
-      owner: '',
+      owner: "",
+      userID: "",
       items: [],
       charItems: [],
       characters: [],
       charChars: [],
       events: [],
+      users: [],
       charEvents: [],
       locations: [],
       charLoc: [],
@@ -103,31 +108,43 @@ export default {
     const events = await axios.get('http://localhost:3100/events');
     this.events = events.data;
 
+    const users = await axios.get('http://localhost:3100/users');
+    this.users = users.data;
+    this.users.forEach(element => {
+      if(element.name == this.userName)
+    this.userID = element._id;
+  });
+
+},
+methods: {
+    ...mapMutations(["logOut"]),
+    userLogout() {
+    this.logOut();
+    console.log(this.isLoggedIn);
   },
-  methods: {
-    createPost() {
-      let campaignData = {
-        name: this.name,
-        owner: this.owner,
-        items: this.charItems,
-        characters: this.charChars,
-        events: this.charEvents,
-        locations: this.charLoc,
-        description: this.description,
-        imageLink: this.imageLink
-      };
-      this.__submitToServer(campaignData);
-    },
-    navigate() {
+  createPost() {
+    let campaignData = {
+      name: this.name,
+      items: this.charItems,
+      owner: this.userID,
+      characters: this.charChars,
+      events: this.charEvents,
+      locations: this.charLoc,
+      description: this.description,
+      imageLink: this.imageLink
+    };
+    this.__submitToServer(campaignData);
+  },
+  navigate() {
+    router.push("/Campaigns");
+  },
+  __submitToServer(data) {
+    axios.post('http://localhost:3100/campaigns', data).then(data => {
       router.push("/Campaigns");
-    },
-    __submitToServer(data) {
-      axios.post('http://localhost:3100/campaigns', data).then(data => {
-        router.push("/Campaigns");
-      }).catch(err => {
-        alert(err.response.data.message);
-      });
-    }
+    }).catch(err => {
+      alert(err.response.data.message);
+    });
   }
+}
 };
 </script>

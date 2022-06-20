@@ -12,32 +12,32 @@
             <router-link to="/">Home</router-link><span class="sr-only"></span>
           </a>
         </li>
-        <li class="nav-item">
+        <li v-if="isLoggedIn" class="nav-item">
           <a class="nav-link">
             <router-link to="/places">Places</router-link>
           </a>
         </li>
-        <li class="nav-item">
+        <li v-if="isLoggedIn" class="nav-item">
           <a class="nav-link">
             <router-link to="/races">Races</router-link>
           </a>
         </li>
-        <li class="nav-item">
+        <li v-if="isLoggedIn" class="nav-item">
           <a class="nav-link">
             <router-link to="/items">Items</router-link>
           </a>
         </li>
-        <li class="nav-item">
+        <li v-if="isLoggedIn" class="nav-item">
           <a class="nav-link">
             <router-link to="/characters">Characters</router-link>
           </a>
         </li>
-        <li class="nav-item">
+        <li v-if="isLoggedIn" class="nav-item">
           <a class="nav-link">
             <router-link to="/events">Events</router-link>
           </a>
         </li>
-        <li class="nav-item">
+        <li v-if="isLoggedIn" class="nav-item">
           <a class="nav-link">
             <router-link to="/Campaigns">Campaign</router-link>
           </a>
